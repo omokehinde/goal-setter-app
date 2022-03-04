@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/api/goals';
+const API_URL = '/api/goals/';
 
 // Create new Goal
 const createGoal = async (goalData, token) => {
@@ -24,9 +24,21 @@ const getGoals = async (token) => {
     return response.data;
 };
 
+// delete a user's Goals
+const deleteGoal = async (goalId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+    const response = await axios.delete(API_URL + goalId, config);
+    return response.data;
+};
+
 const goalService = {
     createGoal,
     getGoals,
+    deleteGoal,
 };
 
 export default goalService;
